@@ -7,7 +7,7 @@ const cors = require('cors')
 //const connection = require('./database/db')
 const passport = require('./passport');
 const app = express();
-const PORT = 8080
+const PORT = process.env.PORT || 8080;
 // Route requires
 const route = require('./routes/route');
 
@@ -43,3 +43,13 @@ app.use('/user', route)
 app.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
 })
+
+// const express = require('express');
+// const app = express();
+// const port = process.env.PORT || 3000
+
+// app.get('/', (req, res) => {
+//     res.send('An alligator approaches!');
+// });
+
+// app.listen(port, () => console.log('Gator app listening on port 3000!'));
