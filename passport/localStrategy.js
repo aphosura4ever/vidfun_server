@@ -17,7 +17,7 @@ async function checkPassword(password,hash) {
 	function(username, password, done) {
     
     console.log('Local Strategy Logic: ')
-    connection.query(`SELECT USER_ID,Username,Password FROM login.users where Username =  '${username}'`,
+    connection.query(`SELECT USER_ID,Username,Password FROM 3o4Qp0UaYn.users where Username =  '${username}'`,
     function(error,results,fields) {
       if(error) throw error
        console.log(results)
