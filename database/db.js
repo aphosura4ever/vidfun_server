@@ -6,11 +6,12 @@ const connection = mysql.createConnection({
     password: "qwertyhnjkl",
     database: "login"
   });
-  
-  
+
   
   connection.connect(err => {
-    if (err) console.error("Error connection to database");
+    if (err) {console.error("Error connection to database");
+
+    console.log(error)}
     else console.log("Database connected");
   });
   
