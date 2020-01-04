@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 // Route requires
 const route = require('./routes/route');
-
+app.use(cors());
 // MIDDLEWAREfgcnfgngf
 
 app.use(morgan('dev'))
