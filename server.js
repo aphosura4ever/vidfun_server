@@ -10,13 +10,18 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 // Route requires
 const route = require('./routes/route');
-app.use(function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-	next();
-  });
-// MIDDLEWAREfgcnfgngf
 
+// MIDDLEWAREfgcnfgngf
+var corsOptions = {
+	origin: function (origin, callback) {
+	  if (whitelist.indexOf(origin) !== -1 || !origin) {
+		callback(null, true)
+	  } else {
+		callback(new Error('Not allowed by CORS'))
+	  }
+	}
+  }
+  app.use(cors(corsOptions))
 app.use(morgan('dev'))
 app.use(
 	bodyParser.urlencoded({
