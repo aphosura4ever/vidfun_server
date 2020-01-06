@@ -10,18 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 // Route requires
 const route = require('./routes/route');
-var whitelist = ['http://localhost:3000']
-// MIDDLEWAREfgcnfgngf
-var corsOptions = {
-	origin: function (origin, callback) {
-	  if (whitelist.indexOf(origin) !== -1 || !origin) {
-		callback(null, true)
-	  } else {
-		callback(new Error('Not allowed by CORS'))
-	  }
-	}
-  }
-  app.use(cors(corsOptions))
+
 app.use(morgan('dev'))
 app.use(
 	bodyParser.urlencoded({
