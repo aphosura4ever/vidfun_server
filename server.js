@@ -11,6 +11,11 @@ const PORT = process.env.PORT || 8080;
 // Route requires
 const route = require('./routes/route');
 
+var corsOptions = {
+    origin: '*',
+    credentials: true };
+
+app.use(cors(corsOptions));
 app.use(morgan('dev'))
 app.use(
 	bodyParser.urlencoded({
