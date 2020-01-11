@@ -135,7 +135,7 @@ router.get('/videos',(req,res)=>{
 
     const path = `D:/home/vidfun_videos/${users[user_index]}/${videos[index]}`
     index++;
-    console.log(req);    console.log(index)
+        console.log(index)
 
     const stat = fs.statSync(path)
     const fileSize = stat.size
