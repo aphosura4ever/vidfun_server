@@ -173,7 +173,7 @@ router.get("/videoscheck", (req,res)=>{
      }
      else
         res.send(videos.length);
-        
+        res.status(200);
 
 })
 
