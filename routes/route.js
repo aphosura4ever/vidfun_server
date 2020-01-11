@@ -7,8 +7,8 @@ const fs = require('fs');
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 var uploadPath = `D:/home/vidfun_videos/`
-
-
+var index = 0;
+var user_index = 0;
 
 router.post('/', (req, res) => {
     console.log('user signup');
@@ -111,7 +111,7 @@ router.post('/upload',(req,res)=>{
 
 router.get('/videos',(req,res)=>{
     
-
+    let videos = []
     let users = []
     fs.readdirSync("D:/home/vidfun_videos").forEach(file => {
         console.log(file);
@@ -130,12 +130,11 @@ router.get('/videos',(req,res)=>{
       console.log(videos);
 
       
+        
 
 
-    const index = Math.floor(Math.random() * Math.floor(videos.length-1));
-
-    const path = `D:/home/vidfun_videos/${videos[index]}`
-
+    const path = `D:/home/vidfun_videos/${users[user_index]}/${videos[index]}`
+    index++;
     console.log(req);    console.log(index)
 
     const stat = fs.statSync(path)
