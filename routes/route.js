@@ -134,7 +134,7 @@ router.get('/videos',(req,res)=>{
       
         
 
-    const path = videos_paths[random_index];
+    const path = video_paths[random_index];
 
     const stat = fs.statSync(path)
     const fileSize = stat.size
