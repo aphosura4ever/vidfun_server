@@ -111,31 +111,30 @@ router.post('/upload',(req,res)=>{
 
 router.get('/videos',(req,res)=>{
     
+    let video_paths = []
+
     let videos = []
     let users = []
-    fs.readdirSync("D:/home/vidfun_videos").forEach(file => {
-        console.log(file);
-        users.push(file)
+    fs.readdirSync("D:/home/vidfun_videos").forEach(user => {
+        console.log(user);
+        users.push(user)
+
+        fs.readdirSync(`D:/home/vidfun_videos/${users}`).forEach(video => {
+            console.log(video);
+            videos.push(video)
+            video_paths.push(`D:/home/vidfun_videos/${user}/${video}`)
+        });    
+
+       
     });
   
-    console.log(users);
+    console.log(videos_paths) 
 
-
-    for(i=0;i<users.length;i++){
-    fs.readdirSync(`D:/home/vidfun_videos/${users[i]}`).forEach(file => {
-        console.log(file);
-        videos.push(file)
-      });
-    }
-      console.log(videos);
-
+    random_index = Math.floor(Math.random() * Math.floor(videos_paths.length));
       
         
 
-
-    const path = `D:/home/vidfun_videos/${users[user_index]}/${videos[index]}`
-    index++;
-        console.log(index)
+    const path = videos_paths[random_index];
 
     const stat = fs.statSync(path)
     const fileSize = stat.size
