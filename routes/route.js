@@ -109,7 +109,7 @@ router.post('/upload',(req,res)=>{
 })
 
 
-router.get('/videos',(req,res)=>{
+router.get('/video1',(req,res)=>{
     
     let video_paths = []
 
@@ -163,6 +163,173 @@ router.get('/videos',(req,res)=>{
     }
 
 })
+
+router.get('/video2',(req,res)=>{
+    
+    let video_paths = []
+
+    let videos = []
+    let users = []
+    fs.readdirSync("D:/home/vidfun_videos").forEach(user => {
+        console.log(user);
+        users.push(user)
+
+        fs.readdirSync(`D:/home/vidfun_videos/${user}`).forEach(video => {
+            console.log(video);
+            videos.push(video)
+            video_paths.push(`D:/home/vidfun_videos/${user}/${video}`)
+        });    
+
+       
+    });
+  
+    console.log(video_paths) 
+
+    
+
+    const path = video_paths[Math.floor(Math.random() * Math.floor(video_paths.length))];
+    console.log("random video " + path);
+    const stat = fs.statSync(path)
+    const fileSize = stat.size
+    const range = req.headers.range
+    if (range) {
+      const parts = range.replace(/bytes=/, "").split("-")
+      const start = parseInt(parts[0], 10)
+      const end = parts[1] 
+        ? parseInt(parts[1], 10)
+        : fileSize-1
+      const chunksize = (end-start)+1
+      const file = fs.createReadStream(path, {start, end})
+      const head = {
+        'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+        'Accept-Ranges': 'bytes',
+        'Content-Length': chunksize,
+        'Content-Type': 'video/mp4',
+      }//
+      res.writeHead(206, head);
+      file.pipe(res);
+    } else {
+      const head = {
+        'Content-Length': fileSize,
+        'Content-Type': 'video/mp4',
+      }
+      res.writeHead(200, head)
+      fs.createReadStream(path).pipe(res)
+    }
+
+})
+
+router.get('/video3',(req,res)=>{
+    
+    let video_paths = []
+
+    let videos = []
+    let users = []
+    fs.readdirSync("D:/home/vidfun_videos").forEach(user => {
+        console.log(user);
+        users.push(user)
+
+        fs.readdirSync(`D:/home/vidfun_videos/${user}`).forEach(video => {
+            console.log(video);
+            videos.push(video)
+            video_paths.push(`D:/home/vidfun_videos/${user}/${video}`)
+        });    
+
+       
+    });
+  
+    console.log(video_paths) 
+
+    
+
+    const path = video_paths[Math.floor(Math.random() * Math.floor(video_paths.length))];
+    console.log("random video " + path);
+    const stat = fs.statSync(path)
+    const fileSize = stat.size
+    const range = req.headers.range
+    if (range) {
+      const parts = range.replace(/bytes=/, "").split("-")
+      const start = parseInt(parts[0], 10)
+      const end = parts[1] 
+        ? parseInt(parts[1], 10)
+        : fileSize-1
+      const chunksize = (end-start)+1
+      const file = fs.createReadStream(path, {start, end})
+      const head = {
+        'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+        'Accept-Ranges': 'bytes',
+        'Content-Length': chunksize,
+        'Content-Type': 'video/mp4',
+      }//
+      res.writeHead(206, head);
+      file.pipe(res);
+    } else {
+      const head = {
+        'Content-Length': fileSize,
+        'Content-Type': 'video/mp4',
+      }
+      res.writeHead(200, head)
+      fs.createReadStream(path).pipe(res)
+    }
+
+})
+
+router.get('/video4',(req,res)=>{
+    
+    let video_paths = []
+
+    let videos = []
+    let users = []
+    fs.readdirSync("D:/home/vidfun_videos").forEach(user => {
+        console.log(user);
+        users.push(user)
+
+        fs.readdirSync(`D:/home/vidfun_videos/${user}`).forEach(video => {
+            console.log(video);
+            videos.push(video)
+            video_paths.push(`D:/home/vidfun_videos/${user}/${video}`)
+        });    
+
+       
+    });
+  
+    console.log(video_paths) 
+
+    
+
+    const path = video_paths[Math.floor(Math.random() * Math.floor(video_paths.length))];
+    console.log("random video " + path);
+    const stat = fs.statSync(path)
+    const fileSize = stat.size
+    const range = req.headers.range
+    if (range) {
+      const parts = range.replace(/bytes=/, "").split("-")
+      const start = parseInt(parts[0], 10)
+      const end = parts[1] 
+        ? parseInt(parts[1], 10)
+        : fileSize-1
+      const chunksize = (end-start)+1
+      const file = fs.createReadStream(path, {start, end})
+      const head = {
+        'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+        'Accept-Ranges': 'bytes',
+        'Content-Length': chunksize,
+        'Content-Type': 'video/mp4',
+      }//
+      res.writeHead(206, head);
+      file.pipe(res);
+    } else {
+      const head = {
+        'Content-Length': fileSize,
+        'Content-Type': 'video/mp4',
+      }
+      res.writeHead(200, head)
+      fs.createReadStream(path).pipe(res)
+    }
+
+})
+
+
 
 router.get("/videoscheck", (req,res)=>{
     let users_dir = []
