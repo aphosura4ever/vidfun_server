@@ -6,7 +6,7 @@ const IncomingForm = require('formidable').IncomingForm
 const fs = require('fs');
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-var uploadPath = `C:/Users/Denis/Desktop/vidfun_videos/`
+var uploadPath = `D:/home/vidfun_videos`
 
 
 
