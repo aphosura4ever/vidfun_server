@@ -112,20 +112,29 @@ router.post('/upload',(req,res)=>{
 router.get('/videos',(req,res)=>{
     
 
-let videos = []
-     fs.readdirSync("D:/home/vidfun_videos/tpi").forEach(file => {
+    let users = []
+    fs.readdirSync("D:/home/vidfun_videos").forEach(file => {
+        console.log(file);
+        users.push(file)
+    });
+  
+    console.log(users);
+
+
+    for(i=0;i<users.length;i++){
+    fs.readdirSync(`D:/home/vidfun_videos/${users[i]}`).forEach(file => {
         console.log(file);
         videos.push(file)
       });
-      
+    }
       console.log(videos);
 
       
 
 
-    const index = Math.floor(Math.random() * Math.floor(2));
+    const index = Math.floor(Math.random() * Math.floor(videos.length-1));
 
-    const path = `D:/home/vidfun_videos/tpi/${videos[index]}`
+    const path = `D:/home/vidfun_videos/${videos[index]}`
 
     console.log(req);    console.log(index)
 
@@ -160,15 +169,15 @@ let videos = []
 })
 
 router.get("/videoscheck", (req,res)=>{
-    let videos = []
-    fs.readdirSync("D:/home/vidfun_videos/tpi").forEach(file => {
+    let users_dir = []
+    fs.readdirSync("D:/home/vidfun_videos").forEach(file => {
        console.log(file);
-       videos.push(file)
+       users_dir.push(file)
      });
      
-     console.log(videos);
+     console.log(users_dir);
 
-     if(!videos){
+     if(!users_dir){
         res.send({videosInFeed : false})
      }
      else{
