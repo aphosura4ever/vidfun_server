@@ -110,19 +110,22 @@ router.post('/upload',(req,res)=>{
 
 
 router.get('/videos',(req,res)=>{
-
+    
 
 let videos = []
-     fs.readdirSync("D:/home/vidfun_videos/").forEach(file => {
+     fs.readdirSync("D:/home/vidfun_videos/tpi").forEach(file => {
         console.log(file);
         videos.push(file)
       });
       
       console.log(videos);
 
+      
+
+
     const index = Math.floor(Math.random() * Math.floor(2));
 
-    const path = `D:/home/vidfun_videos/${videos[index]}`
+    const path = `D:/home/vidfun_videos/tpi/${videos[index]}`
 
     console.log(req);    console.log(index)
 
@@ -153,6 +156,24 @@ let videos = []
       res.writeHead(200, head)
       fs.createReadStream(path).pipe(res)
     }
+
+})
+
+router.get("/videos/check", (req,res)=>{
+    let videos = []
+    fs.readdirSync("D:/home/vidfun_videos/tpi").forEach(file => {
+       console.log(file);
+       videos.push(file)
+     });
+     
+     console.log(videos);
+
+     if(!videos){
+         res.send("no videos")
+     }
+     else
+        res.send(videos.length);
+        res.status(200);
 
 })
 
