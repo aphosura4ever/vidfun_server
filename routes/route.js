@@ -152,7 +152,7 @@ router.get('/videos',(req,res)=>{
         'Accept-Ranges': 'bytes',
         'Content-Length': chunksize,
         'Content-Type': 'video/mp4',
-      }
+      }//
       res.writeHead(206, head);
       file.pipe(res);
     } else {
