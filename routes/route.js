@@ -159,7 +159,7 @@ let videos = []
 
 })
 
-router.get("/videos/check", (req,res)=>{
+router.get("/videoscheck", (req,res)=>{
     let videos = []
     fs.readdirSync("D:/home/vidfun_videos/tpi").forEach(file => {
        console.log(file);
