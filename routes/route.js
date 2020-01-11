@@ -168,7 +168,7 @@ router.get("/videoscheck", (req,res)=>{
      
      console.log(videos);
 
-     res.send(videos.length);
+     res.send("videos.length");
 })
 
 
