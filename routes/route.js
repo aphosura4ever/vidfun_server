@@ -113,7 +113,7 @@ router.get('/videos',(req,res)=>{
 
 
 let videos = []
-     fs.readdirSync("C:/Users/Denis/Desktop/vidfun_videos").forEach(file => {
+     fs.readdirSync("D:/home/vidfun_videos/").forEach(file => {
         console.log(file);
         videos.push(file)
       });
@@ -122,7 +122,7 @@ let videos = []
 
     const index = Math.floor(Math.random() * Math.floor(2));
 
-    const path = `C:/Users/Denis/Desktop/vidfun_videos/${videos[index]}`
+    const path = `D:/home/vidfun_videos/${videos[index]}`
 
     console.log(req);    console.log(index)
 
