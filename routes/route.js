@@ -128,9 +128,9 @@ router.get('/videos',(req,res)=>{
        
     });
   
-    console.log(videos_paths) 
+    console.log(video_paths) 
 
-    random_index = Math.floor(Math.random() * Math.floor(videos_paths.length));
+    random_index = Math.floor(Math.random() * Math.floor(video_paths.length));
       
         
 
