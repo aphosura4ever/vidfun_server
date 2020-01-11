@@ -14,7 +14,7 @@ passport.serializeUser(function(user, done) {
 // user object attaches to the request as req.user
 passport.deserializeUser(function(user_id, done) {
    
-    connection.query(`select USER_ID,Username from login.users where USER_ID = ${user_id}`,
+    connection.query(`select USER_ID,Username from users where USER_ID = ${user_id}`,
       function(error,results) {
         if(error) throw(error)
         console.log('------Deserialize user, user------')
