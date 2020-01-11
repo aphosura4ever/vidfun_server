@@ -6,7 +6,7 @@ const IncomingForm = require('formidable').IncomingForm
 const fs = require('fs');
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-var uploadPath = `D:/home/vidfun_videos`
+var uploadPath = `D:/home/vidfun_videos/`
 
 
 
@@ -112,9 +112,47 @@ router.post('/upload',(req,res)=>{
 router.get('/videos',(req,res)=>{
 
 
+let videos = []
+     fs.readdirSync("C:/Users/Denis/Desktop/vidfun_videos").forEach(file => {
+        console.log(file);
+        videos.push(file)
+      });
+      
+      console.log(videos);
 
+    const index = Math.floor(Math.random() * Math.floor(2));
 
+    const path = `C:/Users/Denis/Desktop/vidfun_videos/${videos[index]}`
 
+    console.log(req);    console.log(index)
+
+    const stat = fs.statSync(path)
+    const fileSize = stat.size
+    const range = req.headers.range
+    if (range) {
+      const parts = range.replace(/bytes=/, "").split("-")
+      const start = parseInt(parts[0], 10)
+      const end = parts[1] 
+        ? parseInt(parts[1], 10)
+        : fileSize-1
+      const chunksize = (end-start)+1
+      const file = fs.createReadStream(path, {start, end})
+      const head = {
+        'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+        'Accept-Ranges': 'bytes',
+        'Content-Length': chunksize,
+        'Content-Type': 'video/mp4',
+      }
+      res.writeHead(206, head);
+      file.pipe(res);
+    } else {
+      const head = {
+        'Content-Length': fileSize,
+        'Content-Type': 'video/mp4',
+      }
+      res.writeHead(200, head)
+      fs.createReadStream(path).pipe(res)
+    }
 
 })
 
