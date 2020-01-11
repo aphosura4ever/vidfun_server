@@ -171,10 +171,10 @@ router.get("/videoscheck", (req,res)=>{
      if(!videos){
          res.send("no videos")
      }
-     else
+     else{
         res.send(videos.length);
         res.status(200);
-
+     }
 })
 
 
