@@ -119,7 +119,7 @@ router.get('/videos',(req,res)=>{
         console.log(user);
         users.push(user)
 
-        fs.readdirSync(`D:/home/vidfun_videos/${users}`).forEach(video => {
+        fs.readdirSync(`D:/home/vidfun_videos/${user}`).forEach(video => {
             console.log(video);
             videos.push(video)
             video_paths.push(`D:/home/vidfun_videos/${user}/${video}`)
