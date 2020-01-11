@@ -1,6 +1,6 @@
 const connection = require('../database/db')
 const LocalStrategy = require('passport-local').Strategy
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcrypt')
 
 async function checkPassword(password,hash) {
   const match = await bcrypt.compare(password, hash);
